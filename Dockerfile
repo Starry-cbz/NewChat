@@ -8,7 +8,7 @@ WORKDIR /backend
 COPY . .
 
 # Set go proxy to https://goproxy.cn (open for vps in China Mainland)
-# RUN go env -w GOPROXY=https://goproxy.cn,direct
+RUN go env -w GOPROXY=https://goproxy.cn,direct
 ARG TARGETARCH
 ARG TARGETOS
 ENV GOOS=$TARGETOS GOARCH=$TARGETARCH GO111MODULE=on CGO_ENABLED=1
@@ -21,11 +21,23 @@ RUN apk add --no-cache \
     make \
     linux-headers \
     wget \
-    tar \
-    && if [ "$TARGETARCH" = "arm64" ]; then \
-    wget -q -O /tmp/cross.tgz https://musl.cc/aarch64-linux-musl-cross.tgz  && \
+    tar
+
+# Download cross-compilation toolchain with retry and fallback mirror
+RUN if [ "$TARGETARCH" = "arm64" ]; then \
+    for url in \
+    "https://musl.cc/aarch64-linux-musl-cross.tgz" \
+    "https://mirrors.ustc.edu.cn/musl.cc/aarch64-linux-musl-cross.tgz" \
+    "https://cdn.jsdelivr.net/gh/musl-cross/musl-cross-mirror@main/aarch64-linux-musl-cross.tgz"; \
+    do \
+    if wget -q -O /tmp/cross.tgz "$url"; then \
     tar -xf /tmp/cross.tgz -C /usr/local && \
-    rm /tmp/cross.tgz; \
+    rm /tmp/cross.tgz && \
+    break; \
+    else \
+    echo "Failed to download from $url, trying next mirror..."; \
+    fi; \
+    done; \
     fi
 
 # Build backend
@@ -49,7 +61,6 @@ RUN npm install -g pnpm && \
     pnpm install && \
     pnpm run build && \
     rm -rf node_modules src
-
 
 FROM alpine
 
