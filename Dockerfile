@@ -1,8 +1,7 @@
 # Author: ProgramZmh
 # License: Apache-2.0
 # Description: Dockerfile for chatnio
-
-FROM --platform=$BUILDPLATFORM golang:1.20-alpine AS backend
+FROM --platform=$BUILDPLATFORM alpine:latest AS backend
 
 WORKDIR /backend
 COPY . .
