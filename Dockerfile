@@ -29,10 +29,7 @@ RUN apk add --no-cache \
 # Install ARM64 cross-compilation toolchain from reliable source
 RUN if [ "$TARGETARCH" = "arm64" ]; then \
     echo "Installing ARM64 cross-compiler..." && \
-    wget -q -O /tmp/cross.tgz https://github.com/muslcc/x86_64-linux-musl/releases/download/10.2.1-20230801/aarch64-linux-musl-cross.tgz && \
-    mkdir -p /usr/local/aarch64-linux-musl-cross && \
-    tar -xzf /tmp/cross.tgz -C /usr/local/aarch64-linux-musl-cross --strip-components=1 && \
-    rm /tmp/cross.tgz && \
+    apk add --no-cache aarch64-linux-musl-gcc aarch64-linux-musl-g++ aarch64-linux-musl-binutils && \
     echo "Compiler installed successfully"; \
     fi
 
@@ -47,8 +44,8 @@ RUN if [ "$TARGETARCH" = "arm64" ]; then \
 # Build backend with appropriate compiler
 RUN if [ "$TARGETARCH" = "arm64" ]; then \
     echo "Building for ARM64..." && \
-    CC=/usr/local/aarch64-linux-musl-cross/bin/aarch64-linux-musl-gcc \
-    CXX=/usr/local/aarch64-linux-musl-cross/bin/aarch64-linux-musl-g++ \
+    CC=aarch64-linux-musl-gcc \
+    CXX=aarch64-linux-musl-g++ \
     CGO_ENABLED=1 \
     GOOS=linux \
     GOARCH=arm64 \
