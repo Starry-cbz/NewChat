@@ -28,20 +28,6 @@ RUN apk add --no-cache \
     rm /tmp/cross.tgz; \
     fi
 
-RUN apk add --no-cache \
-    gcc \
-    musl-dev \
-    g++ \
-    make \
-    linux-headers \
-    wget \
-    tar \
-    && if [ "$TARGETARCH" = "arm64" ]; then \
-    wget -q -O /tmp/cross.tgz https://musl.cc/aarch64-linux-musl-cross.tgz && \
-    tar -xf /tmp/cross.tgz -C /usr/local && \
-    rm /tmp/cross.tgz; \
-    fi
-
 # Build backend
 RUN if [ "$TARGETARCH" = "arm64" ]; then \
     CC=/usr/local/aarch64-linux-musl-cross/bin/aarch64-linux-musl-gcc \
