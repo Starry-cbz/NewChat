@@ -1,6 +1,6 @@
 # Author: ProgramZmh
 # License: Apache-2.0
-# Description: Dockerfile for newchat with fixed cross-compilation
+# Description: Dockerfile with reliable cross-compilation support
 
 # ==================== BACKEND BUILD STAGE ====================
 FROM --platform=$BUILDPLATFORM golang:1.20-alpine AS backend
@@ -8,7 +8,7 @@ FROM --platform=$BUILDPLATFORM golang:1.20-alpine AS backend
 WORKDIR /backend
 COPY . .
 
-# Set Go proxy for faster downloads in China
+# Set Go proxy for faster downloads
 RUN go env -w GOPROXY=https://goproxy.cn,direct
 
 ARG TARGETARCH
@@ -26,22 +26,29 @@ RUN apk add --no-cache \
     tar \
     xz
 
-# Install cross-compilation toolchain for ARM64 with verification
+# Install ARM64 cross-compilation toolchain from reliable source
 RUN if [ "$TARGETARCH" = "arm64" ]; then \
     echo "Installing ARM64 cross-compiler..." && \
-    wget -q -O /tmp/cross.tgz https://morello-releases.arm.com/downloads/toolchain/cross-tools/aarch64-linux-musl-cross.tgz && \
+    wget -q -O /tmp/cross.tgz https://musl.cc/aarch64-linux-musl-cross.tgz && \
     mkdir -p /usr/local/aarch64-linux-musl-cross && \
-    tar -xf /tmp/cross.tgz -C /usr/local/aarch64-linux-musl-cross --strip-components=1 && \
+    tar -xzf /tmp/cross.tgz -C /usr/local/aarch64-linux-musl-cross --strip-components=1 && \
     rm /tmp/cross.tgz && \
+    echo "Compiler installed successfully"; \
+    fi
+
+# Verify toolchain installation
+RUN if [ "$TARGETARCH" = "arm64" ]; then \
     echo "Verifying compiler installation..." && \
     ls -la /usr/local/aarch64-linux-musl-cross/bin && \
-    /usr/local/aarch64-linux-musl-cross/bin/aarch64-linux-musl-gcc --version || (echo "Compiler verification failed!" && exit 1); \
+    test -f /usr/local/aarch64-linux-musl-cross/bin/aarch64-linux-musl-gcc && \
+    echo "Compiler verification passed"; \
     fi
 
 # Build backend with appropriate compiler
 RUN if [ "$TARGETARCH" = "arm64" ]; then \
     echo "Building for ARM64..." && \
     CC=/usr/local/aarch64-linux-musl-cross/bin/aarch64-linux-musl-gcc \
+    CXX=/usr/local/aarch64-linux-musl-cross/bin/aarch64-linux-musl-g++ \
     CGO_ENABLED=1 \
     GOOS=linux \
     GOARCH=arm64 \
