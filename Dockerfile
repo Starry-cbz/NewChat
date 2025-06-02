@@ -1,19 +1,21 @@
 # Author: ProgramZmh
 # License: Apache-2.0
-# Description: Dockerfile for newchat
+# Description: Dockerfile for newchat with fixed cross-compilation
 
+# ==================== BACKEND BUILD STAGE ====================
 FROM --platform=$BUILDPLATFORM golang:1.20-alpine AS backend
 
 WORKDIR /backend
 COPY . .
 
-# Set go proxy to https://goproxy.cn (open for vps in China Mainland)
+# Set Go proxy for faster downloads in China
 RUN go env -w GOPROXY=https://goproxy.cn,direct
+
 ARG TARGETARCH
 ARG TARGETOS
 ENV GOOS=$TARGETOS GOARCH=$TARGETARCH GO111MODULE=on CGO_ENABLED=1
 
-# Install build dependencies and cross-compilation toolchain
+# Install build dependencies
 RUN apk add --no-cache \
     gcc \
     musl-dev \
@@ -21,37 +23,36 @@ RUN apk add --no-cache \
     make \
     linux-headers \
     wget \
-    tar
+    tar \
+    xz
 
-# Download cross-compilation toolchain with retry and fallback mirror
+# Install cross-compilation toolchain for ARM64 with verification
 RUN if [ "$TARGETARCH" = "arm64" ]; then \
-    for url in \
-    "https://musl.cc/aarch64-linux-musl-cross.tgz" \
-    "https://mirrors.ustc.edu.cn/musl.cc/aarch64-linux-musl-cross.tgz" \
-    "https://cdn.jsdelivr.net/gh/musl-cross/musl-cross-mirror@main/aarch64-linux-musl-cross.tgz"; \
-    do \
-    if wget -q -O /tmp/cross.tgz "$url"; then \
-    tar -xf /tmp/cross.tgz -C /usr/local && \
+    echo "Installing ARM64 cross-compiler..." && \
+    wget -q -O /tmp/cross.tgz https://morello-releases.arm.com/downloads/toolchain/cross-tools/aarch64-linux-musl-cross.tgz && \
+    mkdir -p /usr/local/aarch64-linux-musl-cross && \
+    tar -xf /tmp/cross.tgz -C /usr/local/aarch64-linux-musl-cross --strip-components=1 && \
     rm /tmp/cross.tgz && \
-    break; \
-    else \
-    echo "Failed to download from $url, trying next mirror..."; \
-    fi; \
-    done; \
+    echo "Verifying compiler installation..." && \
+    ls -la /usr/local/aarch64-linux-musl-cross/bin && \
+    /usr/local/aarch64-linux-musl-cross/bin/aarch64-linux-musl-gcc --version || (echo "Compiler verification failed!" && exit 1); \
     fi
 
-# Build backend
+# Build backend with appropriate compiler
 RUN if [ "$TARGETARCH" = "arm64" ]; then \
+    echo "Building for ARM64..." && \
     CC=/usr/local/aarch64-linux-musl-cross/bin/aarch64-linux-musl-gcc \
     CGO_ENABLED=1 \
     GOOS=linux \
     GOARCH=arm64 \
     go build -o chat -a -ldflags="-extldflags=-static" .; \
     else \
+    echo "Building for native architecture..." && \
     go install && \
     go build .; \
     fi
 
+# ==================== FRONTEND BUILD STAGE ====================
 FROM node:18 AS frontend
 
 WORKDIR /app
@@ -62,31 +63,32 @@ RUN npm install -g pnpm && \
     pnpm run build && \
     rm -rf node_modules src
 
+# ==================== FINAL IMAGE ====================
 FROM alpine
 
-# Install dependencies
+# Install runtime dependencies
 RUN apk upgrade --no-cache && \
     apk add --no-cache wget ca-certificates tzdata && \
     update-ca-certificates 2>/dev/null || true
 
-# Set timezone
+# Set timezone to Asia/Shanghai
 RUN echo "Asia/Shanghai" > /etc/timezone && \
     ln -sf /usr/share/zoneinfo/Asia/Shanghai /etc/localtime
 
 WORKDIR /
 
-# Copy dist
+# Copy built artifacts
 COPY --from=backend /backend/chat /chat
 COPY --from=backend /backend/config.example.yaml /config.example.yaml
 COPY --from=backend /backend/utils/templates /utils/templates
 COPY --from=backend /backend/addition/article/template.docx /addition/article/template.docx
 COPY --from=frontend /app/dist /app/dist
 
-# Volumes
+# Create volume mount points
 VOLUME ["/config", "/logs", "/storage"]
 
-# Expose port
+# Expose application port
 EXPOSE 8094
 
-# Run application
+# Set entrypoint
 CMD ["./chat"]
