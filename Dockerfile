@@ -23,7 +23,7 @@ RUN apk add --no-cache \
     wget \
     tar \
     && if [ "$TARGETARCH" = "arm64" ]; then \
-    wget -q -O /tmp/cross.tgz https://musl.cc/aarch64-linux-musl-cross.tgz && \
+    wget -q -O /tmp/cross.tgz https://musl.cc/aarch64-linux-musl-cross.tgz  && \
     tar -xf /tmp/cross.tgz -C /usr/local && \
     rm /tmp/cross.tgz; \
     fi
