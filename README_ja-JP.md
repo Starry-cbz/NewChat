@@ -2,20 +2,20 @@
 
 ![newchat](/app/public/logo.png)
 
-# [🥳 Chat Nio](https://newchat.com)
+# [🥳 New Chat](https://newchat.com)
 
 #### 🚀 次世代AIGCワンストップビジネスソリューション
 
-#### *"Chat Nio > [Next Web](https://github.com/ChatGPTNextWeb/ChatGPT-Next-Web) + [One API](https://github.com/songquanpeng/one-api)"*
+#### *"New Chat > [Next Web](https://github.com/ChatGPTNextWeb/ChatGPT-Next-Web) + [One API](https://github.com/songquanpeng/one-api)"*
 
 
 English · [简体中文](./README_zh-CN.md) · [日本語](./README_ja-JP.md) · [ドキュメント](https://newchat.com) · [Discord](https://discord.gg/rpzNSmqaF2) · [デプロイガイド](https://newchat.com/docs/deploy)
 
 [![Deploy on Zeabur](https://zeabur.com/button.svg)](https://zeabur.com/templates/M86XJI)
 
-[![Chat Nio: #1 Repo Of The Day](https://trendshift.io/api/badge/repositories/6369)](https://trendshift.io/repositories/6369)
+[![New Chat: #1 Repo Of The Day](https://trendshift.io/api/badge/repositories/6369)](https://trendshift.io/repositories/6369)
 
-<img alt="Chat Nio Preview" src="./screenshot/newchat.png" width="100%" style="border-radius: 8px">
+<img alt="New Chat Preview" src="./screenshot/newchat.png" width="100%" style="border-radius: 8px">
 
 </div>
 
@@ -28,7 +28,7 @@ English · [简体中文](./README_zh-CN.md) · [日本語](./README_ja-JP.md) �
 6. 🎨 **テキストから画像へのサポート**: 複数のテキストから画像へのモデルをサポート: **OpenAI DALL-E**✅ & **Midjourney** ( **U/V/R** 操作をサポート)✅ & Stable Diffusion✅ など
 7. 📡 **強力な会話同期**: **ユーザーのゼロコストクロスデバイス会話同期サポート**、**会話共有** (リンク共有 & 画像として保存 & 共有管理) をサポート、**WebDav / WebRTCなどの依存関係や複雑な学習コストは不要**
 8. 🎈 **モデル市場 & プリセットシステム**: バックエンドでカスタマイズ可能なモデル市場をサポートし、モデルの紹介、タグなどのパラメータを提供。サイトオーナーは状況に応じてモデルの紹介をカスタマイズできます。また、**カスタムプリセット**と**クラウド同期**機能を含むプリセットシステムもサポート。
-9. 📖 **豊富なファイル解析**: **すぐに使える**、**すべてのモデル**のファイル解析をサポート (PDF / Docx / Pptx / Excel / 画像形式の解析)、**より多くのクラウド画像ストレージソリューション** (S3 / R2 / MinIO など) をサポート、**OCR画像認識**をサポート 👉 詳細はプロジェクト [Chat Nio Blob Service](https://github.com/Deeptrain-Community/newchat-blob-service) を参照 (Vercel / Dockerのワンクリックデプロイをサポート)
+9. 📖 **豊富なファイル解析**: **すぐに使える**、**すべてのモデル**のファイル解析をサポート (PDF / Docx / Pptx / Excel / 画像形式の解析)、**より多くのクラウド画像ストレージソリューション** (S3 / R2 / MinIO など) をサポート、**OCR画像認識**をサポート 👉 詳細はプロジェクト [New Chat Blob Service](https://github.com/Deeptrain-Community/newchat-blob-service) を参照 (Vercel / Dockerのワンクリックデプロイをサポート)
 10. 🌏 **全モデルインターネット検索**: [SearXNG](https://github.com/searxng/searxng) オープンソースエンジンに基づき、Google / Bing / DuckDuckGo / Yahoo / Wikipedia / Arxiv / Qwant などの豊富な検索エンジン検索をサポート、安全検索モード、コンテンツ切り捨て、画像プロキシ、検索可用性テストなどの機能をサポート。
 11. 💕 **プログレッシブウェブアプリ (PWA)**: PWAアプリケーションをサポートし、デスクトップサポート (デスクトップは [Tauri](https://github.com/tauri-apps/tauri) に基づく)
 12. 🤩 **包括的なバックエンド管理**: 美しく豊富なダッシュボード、公告 & 通知管理、ユーザー管理、サブスクリプション管理、ギフトコード & 交換コード管理、価格設定、サブスクリプション設定、カスタムモデル市場、カスタムサイト名 & ロゴ、SMTPメール設定などの機能をサポート
@@ -42,7 +42,7 @@ English · [简体中文](./README_zh-CN.md) · [日本語](./README_ja-JP.md) �
 20. 🎫 **複数の交換コードシステム**: 複数の交換コードシステムをサポートし、ギフトコードと交換コードをサポートし、バッチ生成をサポート。ギフトコードはプロモーション配布に適しており、交換コードはカード販売に適しています。ギフトコードの1つのタイプの複数のコードは、1人のユーザーが1つのコードしか交換できないため、プロモーション中に1人のユーザーが複数回交換する状況をある程度減らします😀
 21. 🥰 **ビジネスフレンドリーなライセンス**: **Apache-2.0** オープンソースライセンスを採用し、商用の二次開発 & 配布にフレンドリー (Apache-2.0ライセンスの規定を遵守し、違法な目的で使用しないでください)
 
-> ### ✨ Chat Nio ビジネス版
+> ### ✨ New Chat ビジネス版
 >
 > ![Pro Version Preview](./screenshot/newchat-pro.png)
 >
@@ -206,7 +206,7 @@ nohup ./newchat > output.log & # バックグラウンドで実行するため�
 したがって、これら2つのタイプのプロジェクトの利点を組み合わせて、強力なAPI分散システムと豊富なユーザーインターフェースデザインを持つプロジェクトを作成し、
 Cエンドユーザーのニーズを満たしながらBエンドビジネスを開発し、ユーザーエクスペリエンスを向上させ、ユーザーの学習コストを削減し、ユーザーの粘着性を高めることを目指しています。
 
-そのため、**Chat Nio** が誕生しました。強力なAPI分散システムと豊富なユーザーインターフェースデザインを持つプロジェクトを作成し、次世代のオープンソースAIGCプロジェクトのワンストップ商用ソリューションになることを目指しています。
+そのため、**New Chat** が誕生しました。強力なAPI分散システムと豊富なユーザーインターフェースデザインを持つプロジェクトを作成し、次世代のオープンソースAIGCプロジェクトのワンストップ商用ソリューションになることを目指しています。
 
 
 ## ❤ 寄付

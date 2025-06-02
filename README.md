@@ -2,20 +2,20 @@
 
 ![newchat](/app/public/logo.png)
 
-# [🥳 Chat Nio](https://newchat.com)
+# [🥳 New Chat](https://newchat.com)
 
 #### 🚀 Next Generation AIGC One-Stop Business Solution
 
-#### *"Chat Nio > [Next Web](https://github.com/ChatGPTNextWeb/ChatGPT-Next-Web) + [One API](https://github.com/songquanpeng/one-api)"*
+#### *"New Chat > [Next Web](https://github.com/ChatGPTNextWeb/ChatGPT-Next-Web) + [One API](https://github.com/songquanpeng/one-api)"*
 
 
 English · [简体中文](./README_zh-CN.md) · [日本語](./README_ja-JP.md) · [Docs](https://newchat.com) · [Discord](https://discord.gg/rpzNSmqaF2) · [Deployment Guide](https://newchat.com/docs/deploy)
 
 [![Deploy on Zeabur](https://zeabur.com/button.svg)](https://zeabur.com/templates/M86XJI)
 
-[![Chat Nio: #1 Repo Of The Day](https://trendshift.io/api/badge/repositories/6369)](https://trendshift.io/repositories/6369)
+[![New Chat: #1 Repo Of The Day](https://trendshift.io/api/badge/repositories/6369)](https://trendshift.io/repositories/6369)
 
-<img alt="Chat Nio Preview" src="./screenshot/newchat.png" width="100%" style="border-radius: 8px">
+<img alt="New Chat Preview" src="./screenshot/newchat.png" width="100%" style="border-radius: 8px">
 
 </div>
 
@@ -28,7 +28,7 @@ English · [简体中文](./README_zh-CN.md) · [日本語](./README_ja-JP.md) �
 6. 🎨 **Text-to-Image Support**: Support for multiple text-to-image models: **OpenAI DALL-E**✅ & **Midjourney** (support for **U/V/R** operations)✅ & Stable Diffusion✅ etc.
 7. 📡 **Powerful Conversation Sync**: **Zero-cost cross-device conversation sync support for users**, support for **conversation sharing** (link sharing & save as image & share management), **no need for WebDav / WebRTC and other dependencies and complex learning costs**
 8. 🎈 **Model Market & Preset System**: Support for customizable model market in the backend, providing model introductions, tags, and other parameters. Site owners can customize model introductions according to the situation. Also supports a preset system, including **custom presets** and **cloud synchronization** functions.
-9. 📖 **Rich File Parsing**: **Out-of-the-box**, supports file parsing for **all models** (PDF / Docx / Pptx / Excel / image formats parsing), **supports more cloud image storage solutions** (S3 / R2 / MinIO etc.), **supports OCR image recognition** 👉 See project [Chat Nio Blob Service](https://github.com/Deeptrain-Community/newchat-blob-service) for details (supports Vercel / Docker one-click deployment)
+9. 📖 **Rich File Parsing**: **Out-of-the-box**, supports file parsing for **all models** (PDF / Docx / Pptx / Excel / image formats parsing), **supports more cloud image storage solutions** (S3 / R2 / MinIO etc.), **supports OCR image recognition** 👉 See project [New Chat Blob Service](https://github.com/Deeptrain-Community/newchat-blob-service) for details (supports Vercel / Docker one-click deployment)
 10. 🌏 **Full Model Internet Search**: Based on the [SearXNG](https://github.com/searxng/searxng) open-source engine, supports rich search engines such as Google / Bing / DuckDuckGo / Yahoo / Wikipedia / Arxiv / Qwant, supports safe search mode, content truncation, image proxy, test search availability, and other functions.
 11. 💕 **Progressive Web App (PWA)**: Supports PWA applications & desktop support (desktop based on [Tauri](https://github.com/tauri-apps/tauri))
 12. 🤩 **Comprehensive Backend Management**: Supports beautiful and rich dashboard, announcement & notification management, user management, subscription management, gift code & redemption code management, price setting, subscription setting, custom model market, custom site name & logo, SMTP email settings, and other functions
@@ -42,7 +42,7 @@ English · [简体中文](./README_zh-CN.md) · [日本語](./README_ja-JP.md) �
 20. 🎫 **Multiple Redemption Code Systems**: Supports multiple redemption code systems, supports gift codes and redemption codes, supports batch generation, gift codes are suitable for promotional distribution, redemption codes are suitable for card sales, for gift codes of one type, a user can only redeem one code, which to some extent reduces the situation of one user redeeming multiple times in promotions😀
 21. 🥰 **Business-Friendly License**: Adopts the **Apache-2.0** open-source license, friendly for commercial secondary development & distribution (please also comply with the provisions of the Apache-2.0 license, do not use for illegal purposes)
 
-> ### ✨ Chat Nio Business
+> ### ✨ New Chat Business
 >
 > ![Pro Version Preview](./screenshot/newchat-pro.png)
 >
@@ -226,7 +226,7 @@ Although these projects support powerful API proxying and management, they lack 
 Therefore, we hope to combine the advantages of these two types of projects to create a project that has both a powerful API distribution system and a rich user interface design,
 thus meeting the needs of C-end users while developing B-end business, improving user experience, reducing user learning costs, and increasing user stickiness.
 
-Thus, **Chat Nio** was born. We hope to create a project that has both a powerful API distribution system and a rich user interface design, becoming the next-generation open-source AIGC project's one-stop commercial solution.
+Thus, **New Chat** was born. We hope to create a project that has both a powerful API distribution system and a rich user interface design, becoming the next-generation open-source AIGC project's one-stop commercial solution.
 
 
 ## ❤ Donations
